@@ -97,28 +97,28 @@ class MainActivity : AppCompatActivity() {
         )
 
         if (cursor!!.moveToFirst()) {
-            setImageView(cursor)
+            setImageView()
         }
     }
 
     private fun getPrevContentsInfo() {
         if (cursor!!.moveToPrevious()) {
-            setImageView(cursor)
+            setImageView()
         } else if (cursor!!.moveToLast()) {
-            setImageView(cursor)
+            setImageView()
         }
     }
 
     private fun getNextContentsInfo() {
         if (cursor!!.moveToNext()) {
-            setImageView(cursor)
+            setImageView()
         } else if (cursor!!.moveToFirst()) {
-            setImageView(cursor)
+            setImageView()
         }
     }
 
-    private fun setImageView(cursor: Cursor?) {
-        if (cursor != null) {
+    private fun setImageView() {
+        cursor?.let { cursor ->
             val fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID)
             val id = cursor.getLong(fieldIndex)
             val imageUri =
